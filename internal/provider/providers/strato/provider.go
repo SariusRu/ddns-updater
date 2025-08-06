@@ -113,6 +113,7 @@ func (p *Provider) Update(ctx context.Context, client *http.Client, ip netip.Add
 	values := url.Values{}
 	values.Set("hostname", utils.BuildURLQueryHostname(p.owner, p.domain))
 	values.Set("myip", ip.String())
+	values.Set("mx", p.domain)
 	u.RawQuery = values.Encode()
 
 	request, err := http.NewRequestWithContext(ctx, http.MethodGet, u.String(), nil)
